@@ -2,7 +2,7 @@
 //#include <bits/stdc++.h> zawiera funkcje z różnych nagłówków, więc nie trzeba importować innych np.<math.h> do obliczania sqrt()
 using namespace std;
 
-//wyświetla wszystkie permutacje
+//wyświetla wszystkie permutacje s-string permutacji l- p-dlugosc permutacji
 void permutacje(string s, int l, int p) 
 { 
     if (l == p) 
@@ -41,7 +41,6 @@ void prevPer(string str)
     else
         cout << "PREV: ";
         cout << str << endl;
-        string s = str;
 }
 
 //generuje m-tą permutację
@@ -101,7 +100,34 @@ void parzystoscMtej(int x)
 
 int main()
 {
-	string str;
+    int permliczba, permdlugosc, permilosc;
+    string perm="1", strtemp;
+    ifstream file("konfiguracja.conf");
+    if(file.good()==false)
+    {
+        cout<<"Plik nie istnieje!";
+        exit(0);
+    }
+    getline(file, strtemp);
+    permliczba=stoi(strtemp);
+    for(int i=1 ;i<=permliczba ;i++){
+        getline(file, strtemp);
+        permdlugosc=stoi(strtemp);
+        getline(file, strtemp);
+        permilosc=stoi(strtemp);
+        for(int j=1; j<permdlugosc; j++)
+        {
+            string permtemp=to_string(j+1);
+            perm.insert(j, permtemp);
+        }
+        permutacje(perm, 0, permdlugosc-1);
+        nextPer(perm);
+	    prevPer(perm);
+        perm="1";
+    }
+    return 0;
+    
+/*  string str;
 	cout<<"Podaj ciąg znaków: ";
 	cin>>str;
     int n = str.size(); 
@@ -118,7 +144,7 @@ int main()
     cout<<liczbaTra<<endl;
     parzystoscMtej(liczbaTra);
 
-    return 0; 
+    return 0; */
 // system() włącza skrypt bash myfile.sh
 	system("/home/user/permutacje_pr/myfile.sh");
 }
