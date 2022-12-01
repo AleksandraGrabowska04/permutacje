@@ -1,0 +1,178 @@
+
+Rozdzial 1
+
+ \X 
+
+
+123
+
+Next: 132
+
+Brak poprzedniej permutacji w kolejności leksykograficznej
+
+
+permutacja nr 2: 132
+
+Liczba transpozycji: 2
+Parzysta
+
+
+ \X 
+
+
+132
+
+Next: 213
+Prev: 123
+
+permutacja nr 2: 132
+
+Liczba transpozycji: 1
+Nieparzysta
+
+
+ \X 
+
+
+213
+
+Next: 231
+Prev: 132
+
+permutacja nr 2: 132
+
+Liczba transpozycji: 3
+Nieparzysta
+
+
+ \X 
+
+
+231
+
+Next: 312
+Prev: 213
+
+permutacja nr 2: 132
+
+Liczba transpozycji: 4
+Parzysta
+
+
+ \X 
+
+
+321
+
+Brak następnej permutacji w kolejności leksykograficznej
+
+Prev: 312
+
+permutacja nr 2: 132
+
+Liczba transpozycji: 3
+Nieparzysta
+
+
+ \X 
+
+
+312
+
+Next: 321
+Prev: 231
+
+permutacja nr 2: 132
+
+Liczba transpozycji: 2
+Parzysta
+
+
+Rozdzial 1
+
+ \X 
+
+
+123
+
+Next: 132
+
+Brak poprzedniej permutacji w kolejności leksykograficznej
+
+
+permutacja nr 1: 123
+
+Liczba transpozycji: 1
+Nieparzysta
+
+
+ \X 
+
+
+132
+
+Next: 213
+Prev: 123
+
+permutacja nr 1: 123
+
+Liczba transpozycji: 2
+Parzysta
+
+
+ \X 
+
+
+213
+
+Next: 231
+Prev: 132
+
+permutacja nr 1: 123
+
+Liczba transpozycji: 2
+Parzysta
+
+
+ \X 
+
+
+231
+
+Next: 312
+Prev: 213
+
+permutacja nr 1: 123
+
+Liczba transpozycji: 3
+Nieparzysta
+
+
+ \X 
+
+
+321
+
+Brak następnej permutacji w kolejności leksykograficznej
+
+Prev: 312
+
+permutacja nr 1: 123
+
+Liczba transpozycji: 4
+Parzysta
+
+
+ \X 
+
+
+312
+
+Next: 321
+Prev: 231
+
+permutacja nr 1: 123
+
+Liczba transpozycji: 3
+Nieparzysta
+
