@@ -1,3 +1,0 @@
-/home/user/permutacje_pr/CMakeFiles/rebuild_cache.dir
-/home/user/permutacje_pr/CMakeFiles/edit_cache.dir
-/home/user/permutacje_pr/CMakeFiles/main.dir
