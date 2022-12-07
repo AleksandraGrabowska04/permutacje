@@ -90,30 +90,33 @@ void parzystoscMtej(int x)
 }
 
 //wyświetla wszystkie permutacje s-string permutacji l- p-dlugosc permutacji
-void permutacje(string s, int l, int p, int m) 
+void permutacje(string s, int l, int p, int m, int* ilosc)
 { 
-    if (l == p)
-    {   
-        cout << endl << " \\X \n" << endl << endl;
-        cout<<s<<endl;
-        nextPer(s);
-	    prevPer(s);
-        cout << endl <<"permutacja nr " << m << ": ";
-        string mTa = mPerm(s, m);
-        int liczbaTra = liczbaTransp(s, mTa);
-        cout<<"\nLiczba transpozycji: "<<liczbaTra<<endl;
-        parzystoscMtej(liczbaTra);
+    if(*ilosc>0){
+        if (l == p)
+        {   
+            *ilosc-=1;
+            cout << endl << " \\X \n" << endl << endl;
+            cout<<s<<endl;
+            nextPer(s);
+            prevPer(s);
+            cout << endl <<"permutacja nr " << m << ": ";
+            string mTa = mPerm(s, m);
+            int liczbaTra = liczbaTransp(s, mTa);
+            cout<<"\nLiczba transpozycji: "<<liczbaTra<<endl;
+            parzystoscMtej(liczbaTra);
+        }
+        else
+        {
+            for (int i = l; i <= p; i++) 
+            { 
+    // swap() --> funkcja pobrana z nagłówka <bits/stdc++.h> 
+                swap(s[l], s[i]); 
+                permutacje(s, l+1, p, m, ilosc);
+                swap(s[l], s[i]); 
+            }
+        }
     }
-    else
-    { 
-        for (int i = l; i <= p; i++) 
-        { 
-// swap() --> funkcja pobrana z nagłówka <bits/stdc++.h> 
-            swap(s[l], s[i]); 
-            permutacje(s, l+1, p, m); 
-            swap(s[l], s[i]); 
-        } 
-    } 
 } 
 
 int main()
@@ -124,28 +127,43 @@ int main()
     if(file.good()==false)
     {
         cout<<"Plik nie istnieje!";
-        exit(0);
+        exit(1);
     }
-    getline(file, strtemp);
-    permliczba=stoi(strtemp);
+    try{
+        getline(file, strtemp);
+        permliczba=stoi(strtemp);
+    }
+        catch (invalid_argument){
+            return 2;
+    }
     for(int i=1 ;i<=permliczba ;i++){
         int r=0;
         r++;
-        getline(file, strtemp);
-        permdlugosc=stoi(strtemp);
-        getline(file, strtemp);
-        permilosc=stoi(strtemp);
-        getline(file, strtemp);
-        permm=stoi(strtemp);
+        try{
+            getline(file, strtemp);
+            permdlugosc=stoi(strtemp);
+            if(permdlugosc < 2 || permdlugosc > 9)
+                throw 3;
+            getline(file, strtemp);
+            permilosc=stoi(strtemp);
+            getline(file, strtemp);
+            permm=stoi(strtemp);
+        }
+        catch (invalid_argument){
+            return 2;
+        }
+        catch (int errNum){
+            return errNum;
+        }
         cout << "\nRozdzial " << r << endl;
         for(int j=1; j<permdlugosc; j++)
         {
             string permtemp=to_string(j+1);
             perm.insert(j, permtemp);
         }
-        permutacje(perm, 0, permdlugosc-1, permm);
+        permutacje(perm, 0, permdlugosc-1, permm, &permilosc);
         perm="1";
-}        
+    }
     return 0;
     
 /*  string str;
