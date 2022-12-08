@@ -1,34 +1,20 @@
 #include <bits/stdc++.h> 
 //#include <bits/stdc++.h> zawiera funkcje z różnych nagłówków, więc nie trzeba importować innych np.<math.h> do obliczania sqrt()
 using namespace std;
-
-//wyświetla wszystkie permutacje s-string permutacji l- p-dlugosc permutacji
-void permutacje(string s, int l, int p) 
-{ 
-    if (l == p) 
-        cout<<s<<endl; 
-    else
-    { 
-        for (int i = l; i <= p; i++) 
-        { 
-// swap() --> funkcja pobrana z nagłówka <bits/stdc++.h> 
-            swap(s[l], s[i]); 
-            permutacje(s, l+1, p); 
-            swap(s[l], s[i]); 
-        } 
-    } 
-} 
-
 // następna permutacja w kolejności leksykograficznej
 void nextPer(string str)
 {
 	bool x = next_permutation(str.begin(), str.end());
     if (x == false)
-        cout << "Brak następnej permutacji w kolejności leksykograficznej"
+    {
+        cout << "\nBrak następnej permutacji w kolejności leksykograficznej\n"
             << endl;
+    }
     else
-        cout << "Next: ";
+    {
+        cout << "\nNext: ";
         cout << str << endl;
+     }
 }
 
 // poprzednia permutacja w kolejności leksykograficznej
@@ -36,11 +22,15 @@ void prevPer(string str)
 {
 	bool x = prev_permutation(str.begin(), str.end());
     if (x == false)
-        cout << "Brak poprzedniej permutacji w kolejności leksykograficznej"
+    {
+        cout << "\nBrak poprzedniej permutacji w kolejności leksykograficznej\n"
             << endl;
+    }
     else
-        cout << "PREV: ";
+    {
+        cout << "Prev: ";
         cout << str << endl;
+    }
 }
 
 //generuje m-tą permutację
@@ -49,12 +39,14 @@ string mPerm(string str, long int m)
     sort(str.begin(), str.end());
   
     long int i = 1;
-    do {
+    do
+    {
         if (i == m)
             break;
   
         i++;
-    } while (next_permutation(str.begin(), str.end()));
+    } 
+    while (next_permutation(str.begin(), str.end()));
     
     cout << str << endl;
     return str;
@@ -92,37 +84,84 @@ int liczbaTransp(string s1, string s2)
 void parzystoscMtej(int x)
 {
     if(x%2==0)
-        cout << "Parzysta" << endl;
+        cout << "Parzysta\n" << endl;
     else
-        cout << "Nieparzysta" << endl;
+        cout << "Nieparzysta\n" << endl;
 }
 
+//wyświetla wszystkie permutacje s-string permutacji l- p-dlugosc permutacji
+void permutacje(string s, int l, int p, int m, int* ilosc)
+{ 
+    if(*ilosc>0){
+        if (l == p)
+        {   
+            *ilosc-=1;
+            cout << endl << " \\X \n" << endl << endl;
+            cout<<s<<endl;
+            nextPer(s);
+            prevPer(s);
+            cout << endl <<"permutacja nr " << m << ": ";
+            string mTa = mPerm(s, m);
+            int liczbaTra = liczbaTransp(s, mTa);
+            cout<<"\nLiczba transpozycji: "<<liczbaTra<<endl;
+            parzystoscMtej(liczbaTra);
+        }
+        else
+        {
+            for (int i = l; i <= p; i++) 
+            { 
+    // swap() --> funkcja pobrana z nagłówka <bits/stdc++.h> 
+                swap(s[l], s[i]); 
+                permutacje(s, l+1, p, m, ilosc);
+                swap(s[l], s[i]); 
+            }
+        }
+    }
+} 
 
 int main()
 {
-    int permliczba, permdlugosc, permilosc;
+    int permliczba, permdlugosc, permilosc, permm;
     string perm="1", strtemp;
     ifstream file("konfiguracja.conf");
     if(file.good()==false)
     {
         cout<<"Plik nie istnieje!";
-        exit(0);
+        exit(1);
     }
-    getline(file, strtemp);
-    permliczba=stoi(strtemp);
+    try{
+        getline(file, strtemp);
+        permliczba=stoi(strtemp);
+    }
+        catch (invalid_argument){
+            return 2;
+    }
     for(int i=1 ;i<=permliczba ;i++){
-        getline(file, strtemp);
-        permdlugosc=stoi(strtemp);
-        getline(file, strtemp);
-        permilosc=stoi(strtemp);
+        int r=0;
+        r++;
+        try{
+            getline(file, strtemp);
+            permdlugosc=stoi(strtemp);
+            if(permdlugosc < 2 || permdlugosc > 9)
+                throw 3;
+            getline(file, strtemp);
+            permilosc=stoi(strtemp);
+            getline(file, strtemp);
+            permm=stoi(strtemp);
+        }
+        catch (invalid_argument){
+            return 2;
+        }
+        catch (int errNum){
+            return errNum;
+        }
+        cout << "\nRozdzial " << r << endl;
         for(int j=1; j<permdlugosc; j++)
         {
             string permtemp=to_string(j+1);
             perm.insert(j, permtemp);
         }
-        permutacje(perm, 0, permdlugosc-1);
-        nextPer(perm);
-	    prevPer(perm);
+        permutacje(perm, 0, permdlugosc-1, permm, &permilosc);
         perm="1";
     }
     return 0;
