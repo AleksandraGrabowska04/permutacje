@@ -1,0 +1,78 @@
+
+Rozdzial 1
+
+ \X 
+
+
+123456789
+
+Next: 123456798
+
+Brak poprzedniej permutacji w kolejności leksykograficznej
+
+
+permutacja nr 1: 123456789
+
+Liczba transpozycji: 1
+Nieparzysta
+
+
+ \X 
+
+
+123456798
+
+Next: 123456879
+Prev: 123456789
+
+permutacja nr 1: 123456789
+
+Liczba transpozycji: 2
+Parzysta
+
+
+Rozdzial 1
+
+ \X 
+
+
+123
+
+Next: 132
+
+Brak poprzedniej permutacji w kolejności leksykograficznej
+
+
+permutacja nr 2: 132
+
+Liczba transpozycji: 2
+Parzysta
+
+
+ \X 
+
+
+132
+
+Next: 213
+Prev: 123
+
+permutacja nr 2: 132
+
+Liczba transpozycji: 1
+Nieparzysta
+
+
+ \X 
+
+
+213
+
+Next: 231
+Prev: 132
+
+permutacja nr 2: 132
+
+Liczba transpozycji: 3
+Nieparzysta
+

@@ -1,9 +1,11 @@
 #!/bin/bash
-FILE=./main
+FILE=./main.cpp
 if test -f "$FILE"; then
 if [ -d "./wynik" ]; then
 if [ -d "./images" ]; then
-./main | tee ./wynik/wynik.txt
+if [ -d "./build" ]; then
+cmake --build ./build
+./build/main | tee ./wynik/wynik.txt
 touch ./wynik/wynik.tex
 cat > ./wynik/wynik.tex << EOF
 \documentclass{article}
@@ -23,6 +25,9 @@ EOF
 pdflatex ./wynik/wynik.tex
 mv -t ./wynik wynik.aux wynik.log wynik.pdf
 xdg-open ./wynik/wynik.pdf
+else
+    echo "Błąd! Nie znaleziono katalogu build, nie można skompilować program."
+fi
 else
     echo "Błąd! Nie znaleziono katalogu images, stwórz katalog images w lokalizacji programu oraz dodaj zdjęcie o nazwie dfa."
 fi

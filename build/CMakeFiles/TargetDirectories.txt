@@ -1,0 +1,3 @@
+/home/LABPK/jmarkowski/sp/Protemp/permutacje/permutacje/build/CMakeFiles/rebuild_cache.dir
+/home/LABPK/jmarkowski/sp/Protemp/permutacje/permutacje/build/CMakeFiles/main.dir
+/home/LABPK/jmarkowski/sp/Protemp/permutacje/permutacje/build/CMakeFiles/edit_cache.dir
