@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/user/permutacje_pr/build",
-  "command": "/usr/bin/g++    -g   -o CMakeFiles/main.dir/main.cpp.o -c /home/user/permutacje_pr/main.cpp",
-  "file": "/home/user/permutacje_pr/main.cpp"
-}
-]
