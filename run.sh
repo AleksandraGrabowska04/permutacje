@@ -1,6 +1,10 @@
 #!/bin/bash
 FILE=./main.cpp
+FILE2=./CMakeLists.txt
+FILE3=./konfiguracja.conf
 if test -f "$FILE"; then
+if test -f "$FILE2"; then
+if test -f "$FILE3"; then
 if [ -d "./wynik" ]; then
 if [ -d "./images" ]; then
 if [ -d "./build" ]; then
@@ -33,6 +37,12 @@ else
 fi
 else    
     echo "Błąd! Nie znaleziono katalogu wynik, stwórz katalog wynik w lokalizacji programu."
+fi
+else
+    echo "Błąd! Nie znaleziono pliku $FILE3."
+fi
+else
+    echo "Błąd! Nie znaleziono pliku $FILE2."
 fi
 else
     echo "Błąd! Nie znaleziono pliku $FILE."
