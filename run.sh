@@ -8,8 +8,8 @@ if test -f "$FILE3"; then
 if [ -d "./wynik" ]; then
 if [ -d "./images" ]; then
 if [ -d "./build" ]; then
-cmake --build ./build
 ./build/main | tee ./wynik/wynik.txt
+if [ -s ./wynik/wynik.txt ]; then 
 touch ./wynik/wynik.tex
 cat > ./wynik/wynik.tex << EOF
 \documentclass{article}
@@ -30,6 +30,9 @@ pdflatex ./wynik/wynik.tex
 mv -t ./wynik wynik.aux wynik.log wynik.pdf
 xdg-open ./wynik/wynik.pdf
 else
+    echo "Błąd! Do pliku konfiguracyjnego podano złe argumenty."
+fi
+else
     echo "Błąd! Nie znaleziono katalogu build, nie można skompilować program."
 fi
 else
@@ -47,3 +50,4 @@ fi
 else
     echo "Błąd! Nie znaleziono pliku $FILE."
 fi
+
