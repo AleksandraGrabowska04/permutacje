@@ -27,7 +27,8 @@ cat > ./wynik/wynik.tex << EOF
 \end{document}
 EOF
 pdflatex ./wynik/wynik.tex
-mv -t ./wynik wynik.aux wynik.log wynik.pdf
+mv -t ./wynik wynik.aux wynik.pdf
+mv -t ./test wynik.log
 xdg-open ./wynik/wynik.pdf
 else
     echo "Błąd! Do pliku konfiguracyjnego podano złe argumenty."
