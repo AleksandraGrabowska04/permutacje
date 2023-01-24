@@ -3,17 +3,56 @@
 RUN=./run.sh
 TIME_F=./test/time.txt
 LOG=./test/wynik.log
+MAH=./test/wynikiStare
 
-# Towrzenie nowe pliku time.txt dla każdego uruchomienia testu
-TIME_F=./test/time-$(date +%s).txt
-touch $TIME_
 
 #Sprawdzenie, czy można uruchomić run.sh i czy wgl istnieje
 if test -f "$RUN"; then
     if [ -x "$RUN" ]; then
+        opcja=()
+        readarray -t opcja < ./opcje.txt
+        echo "$opcja[*]"
+        date +%T%N > ./test/godzinaRozpoczecia.txt #godzina rozpoczęcia testu
+        if [[ " ${opcja[*]} " =~ " A " ]]; then 
+cat > ./konfiguracja.conf << EOF
+1
+9
+2
+1
+3
+3
+2
+EOF
+        { time ./run.sh 2>> ./test/runA.stderr ; } 2>> ./test/wynikTestA.txt
+        fi
+        if [[ " ${opcja[*]} " =~ " B " ]]; then
+cat > ./konfiguracja.conf << EOF
+1
+4
+2
+1
+3
+3
+2
+EOF
+{ time ./run.sh 2>> ./test/runB.stderr ; } 2>> ./test/wynikTestB.txt
+        fi
+        if [[ " ${opcja[*]} " =~ " C " ]]; then
+cat > ./konfiguracja.conf << EOF
+1
+3
+2
+1
+3
+3
+2
+EOF
+{ time ./run.sh 2>> ./test/runC.stderr ; } 2>> ./test/wynikTestC.txt
+        fi
 
-        #Uruchomienie run.sh i zapisanie czasów do time.txt
-        { time ./run.sh 2>> ./test/run.stderr ; } 2>> $TIME_F
+        date +%T%N >> ./test/godzinaRozpoczecia.txt #godzina zakończenia testu
+    
+    
     else
         echo "Błąd!!!!!!!!!!! Plik $RUN nie istnieje lub nie jest wykonywalny."
     fi
@@ -30,3 +69,7 @@ fi
 if [ ! -s "$LOG" ]; then
     echo "Błąd!!!!!!!!!!! Dane nie zostały zapisane do pliku $LOG :(."
 fi
+pdflatex ./test/sprawozdanie.tex
+mv -t ./test/wynikiStare  ./test/wynikTestA.txt ./test/wynikTestB.txt ./test/wynikTestC.txt ./test/runA.stderr ./test/runB.stderr ./test/runC.stderr
+
+mv -t ./test  sprawozdanie.aux sprawozdanie.log sprawozdanie.pdf 

@@ -1,0 +1,52 @@
+
+\documentclass{article}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{fancyvrb}
+
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}
+{fontsize=\footnotesize, frame=lines, framesep=2em, rulecolor=\color{Gray}, label=\fbox{\color{Black}godzinaRozpoczecia.txt}, labelposition=topline, commandchars=\|\(\), commentchar=*}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[T1]{fontenc}
+	\addtolength{\oddsidemargin}{-.875in}
+	\addtolength{\evensidemargin}{-.875in}
+	\addtolength{\textwidth}{1.75in}
+
+	\addtolength{\topmargin}{-.875in}
+	\addtolength{\textheight}{1.75in}
+\begin{document}
+\begin{large}
+
+\section{Wstęp}
+Program testowy do sprawdzania czasu wykonywania programu do permutacji.
+\\Godzina rospoczęcia i zakończenia działania programu test.sh:
+\begin{center}
+\begin{figure}[hbt!]
+\centering
+\VerbatimInput{./test/godzinaRozpoczecia.txt}
+\end{figure}
+\end{center}
+
+Lokalizacje plików:
+
+\begin{table}[hbt!]
+
+\begin{tabular}{|l|l|l|} 
+\hline
+Nazwa pliku & Funckja & Lokalizacja   \\
+\hline
+main   & Program liczący permutacje.   & ./build  \\
+run.sh  & Skrypt uruchamiający main, tworzy plik pdf z wynikami programu & Katalog głowny. \\
+compile.sh & Kompiluje program. & Katalog głowny.    \\
+test.sh   & Sprawdza czas wykonywania programu dla różnych zmiennych.  & Katalog głowny. \\  
+godzinaRozpoczecia.txt  & Przechowuje godzine rozpoczęcia i zakończenia test.sh. & ./test\\
+\hline 
+\end{tabular}
+\end{table}
+
+
+
+\end{large}
+
+\end{document}
+
