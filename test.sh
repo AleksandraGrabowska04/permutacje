@@ -16,38 +16,42 @@ if test -f "$RUN"; then
         if [[ " ${opcja[*]} " =~ " A " ]]; then 
 cat > ./konfiguracja.conf << EOF
 1
-9
+3
 2
 1
-3
-3
-2
 EOF
-        { time ./run.sh 2>> ./test/runA.stderr ; } 2>> ./test/wynikTestA.txt
+        { time for ((n=0;n<150;n++))
+        do
+        ./run.sh
+        done 2>> ./test/runA.stderr ; } 2>> ./test/wynikTestA.txt 
         fi
+        
         if [[ " ${opcja[*]} " =~ " B " ]]; then
 cat > ./konfiguracja.conf << EOF
 1
-4
+5
 2
 1
-3
-3
-2
 EOF
-{ time ./run.sh 2>> ./test/runB.stderr ; } 2>> ./test/wynikTestB.txt
+        { time for ((n=0;n<100;n++))
+        do
+        ./run.sh
+        done 2>> ./test/runB.stderr ; } 2>> ./test/wynikTestB.txt
+
         fi
+        
         if [[ " ${opcja[*]} " =~ " C " ]]; then
 cat > ./konfiguracja.conf << EOF
 1
-3
+8
 2
 1
-3
-3
-2
 EOF
-{ time ./run.sh 2>> ./test/runC.stderr ; } 2>> ./test/wynikTestC.txt
+        { time for ((n=0;n<50;n++))
+        do
+        ./run.sh
+        done 2>> ./test/runC.stderr ; } 2>> ./test/wynikTestC.txt
+
         fi
 
         date +%T%N >> ./test/godzinaRozpoczecia.txt #godzina zakończenia testu
